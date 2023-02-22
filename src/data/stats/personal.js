@@ -18,6 +18,27 @@ const Age = () => {
   return <>{age}</>;
 };
 
+const HeartBeats = () => {
+  const [heartbeat, setHeartbeat] = useState(0);
+
+  const tick = () => {
+    setHeartbeat(heartbeat + 1);
+    // if (newBeat > 15) {
+    //   setHeartbeat(0)
+    // }
+    // setHeartbeat(newBeat + 1)
+  };
+
+  useEffect(() => {
+    const t = setInterval(() => tick(), 25)
+    return () => {
+      clearInterval(t);
+    }
+  }, []);
+
+  return <>{heartbeat}</>;
+}
+
 const data = [
   {
     key: 'age',
@@ -25,11 +46,16 @@ const data = [
     value: <Age />,
   },
   {
-    key: 'countries',
-    label: 'Countries visited',
-    value: 53,
+    key: 'beats',
+    label: 'Heartbeats Today',
+    value: <HeartBeats />,
+  },
+  {
+    key: 'cities',
+    label: 'Cities visited',
+    value: 3,
     link:
-      'https://www.google.com/maps/d/embed?mid=1iBBTscqateQ93pWFVfHCUZXoDu8&z=2',
+      'https://www.google.com/maps/d/u/0/edit?mid=1U5A2MR25l5Kufvh_1QLlKvEopaNBXZY&usp=sharing',
   },
   {
     key: 'location',
