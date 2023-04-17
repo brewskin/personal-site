@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import DateFact from './numbers';
 
 const Age = () => {
   const [age, setAge] = useState();
 
   const tick = () => {
-    const divisor = 1000 * 60 * 60 * 24 * 365.2421897; // ms in an average year
+    const divisor = 1000 * 60 * 60 * 24 * 365.2421897; // mes in an average year
     const birthTime = new Date('1990-07-02T07:24:00');
     setAge(((Date.now() - birthTime) / divisor).toFixed(11));
   };
@@ -30,14 +31,14 @@ const HeartBeats = () => {
   };
 
   useEffect(() => {
-    const t = setInterval(() => tick(), 25)
+    const t = setInterval(() => tick(), 25);
     return () => {
       clearInterval(t);
-    }
+    };
   }, []);
 
   return <>{heartbeat}</>;
-}
+};
 
 const data = [
   {
@@ -49,6 +50,11 @@ const data = [
     key: 'beats',
     label: 'Heartbeats Today',
     value: <HeartBeats />,
+  },
+  {
+    key: 'date-fact',
+    label: 'A fact about today',
+    value: <DateFact />,
   },
   {
     key: 'cities',
