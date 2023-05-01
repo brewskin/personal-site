@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class DateFact extends Component {
-    state = {
-        data: null,
-        loading: true,
-        error: null,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: null,
+            loading: true,
+            error: null,
+        };
+    }
+    // state = {
+    //     data: null,
+    //     loading: true,
+    //     error: null,
+    // };
 
     async componentDidMount() {
         try {
-            const now = Date.now()
+            const now = Date.now();
             const response = await axios.get(`http://numbersapi.com/${now.getMonth()}/${now.getDate()}}/date`);
             this.setState({ data: response.data, loading: false });
         } catch (error) {
